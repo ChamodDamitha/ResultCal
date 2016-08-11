@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('Results','SemesterController@showResults');
+
+Route::get('test','SemesterController@test');
