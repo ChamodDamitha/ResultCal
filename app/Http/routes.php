@@ -15,6 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('Results','SemesterController@showResults');
+Route::get('Results/{semester}','SemesterController@showResults');
 
-Route::get('test','SemesterController@test');
+Route::get('{semester}/AddSubject','SemesterController@addSubject');
+
+Route::post('{semester}/AddSubject','SemesterController@postAddSubject');
+
+Route::get('{semester}/EditSubject/{subjectname}','SemesterController@editSubject');
+
+Route::post('{semester}/EditSubject/{subjectname}','SemesterController@postEditSubject');
+
+Route::get('{semester}/DeleteSubject/{subjectname}','SemesterController@deleteSubject');
+
+Route::get('AddStudent','StudentController@addStudent');
+
+Route::post('AddStudent','StudentController@postAddStudent');
+
+Route::get('LogStudent','StudentController@logStudent');
+
+Route::post('LogStudent','StudentController@postlogStudent');
+

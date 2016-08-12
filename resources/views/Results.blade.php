@@ -1,6 +1,25 @@
 @extends('Master')
 
 @section('main_content')
+    <script>
+        public:function semesterSelect() {
+            var currentSemNo=document.getElementById("selected_semester").value;
+            window.location.href='/Results/'+'Semester'+currentSemNo;
+        }
+        public:function editSubject(i,currentSemNo) {
+            var subjectName=document.getElementById("subjectName"+i).innerText;
+            window.location.href='/Semester'+currentSemNo+'/EditSubject/'+subjectName;
+        }
+        public:function addNewSubject(currentSemNo) {
+            window.location.href='/Semester'+currentSemNo+'/AddSubject';
+        }
+
+        public:function deleteSubject(i,currentSemNo) {
+            var subjectName=document.getElementById("subjectName"+i).innerText;
+            window.location.href='/Semester'+currentSemNo+'/DeleteSubject/'+subjectName;
+        }
+    </script>
+
     <div id="studentDetails" class="container">
 
         <label id="studentName">{{$studentName}}</label></br>
@@ -21,7 +40,7 @@
             <th>Credit</th>
             <th>Grade</th>
 
-            <th colspan="2"><button class="btn btn-success" id="btnAddSubject" onclick="addNewSubject()">Add New Subject</button></th>
+            <th colspan="2"><button class="btn btn-success" id="btnAddSubject" onclick="addNewSubject({{$currentSemNo}})">Add New Subject</button></th>
 
             @for($i=0;$i<count($subjectNames);$i++)
             <tr>
@@ -30,8 +49,8 @@
                 <td>{{$moduleCodes[$i]}}</td>
                 <td>{{$credits[$i]}}</td>
                 <td>{{$grades[$i]}}</td>
-                <td><button class="btn btn-warning" onclick="editSubject({{$i}})">EDIT</button></td>
-                <td><button class="btn btn-danger" onclick="deleteSubject({{$i}})">DEL</button></td>
+                <td><button class="btn btn-warning" onclick="editSubject({{$i.",".$currentSemNo}})">EDIT</button></td>
+                <td><button class="btn btn-danger" onclick="deleteSubject({{$i.",".$currentSemNo}})">DEL</button></td>
             </tr>
             @endfor
 
