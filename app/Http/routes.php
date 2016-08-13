@@ -14,24 +14,29 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware'=>['auth']],function()
+{
+    Route::get('Results/{semester}', ['uses'=>'SemesterController@showResults','as'=>'results']);
 
-Route::get('Results/{semester}','SemesterController@showResults');
+    Route::get('{semester}/AddSubject', 'SemesterController@addSubject');
 
-Route::get('{semester}/AddSubject','SemesterController@addSubject');
+    Route::post('{semester}/AddSubject', 'SemesterController@postAddSubject');
 
-Route::post('{semester}/AddSubject','SemesterController@postAddSubject');
+    Route::get('{semester}/EditSubject/{subjectname}', 'SemesterController@editSubject');
 
-Route::get('{semester}/EditSubject/{subjectname}','SemesterController@editSubject');
+    Route::post('{semester}/EditSubject/{subjectname}', 'SemesterController@postEditSubject');
 
-Route::post('{semester}/EditSubject/{subjectname}','SemesterController@postEditSubject');
+    Route::get('{semester}/DeleteSubject/{subjectname}', 'SemesterController@deleteSubject');
 
-Route::get('{semester}/DeleteSubject/{subjectname}','SemesterController@deleteSubject');
-
+    Route::get('LogOutStudent','StudentController@logOutStudent');
+});
 Route::get('AddStudent','StudentController@addStudent');
 
 Route::post('AddStudent','StudentController@postAddStudent');
 
-Route::get('LogStudent','StudentController@logStudent');
+Route::get('LogStudent',['uses'=>'StudentController@logStudent','as'=>'home']);
 
 Route::post('LogStudent','StudentController@postlogStudent');
+
+
 

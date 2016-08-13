@@ -1,19 +1,40 @@
 @extends('Master')
 
 @section('main_content')
-    @if(count($errors)>0)
-        <div class="container alert alert-danger" id="status">
-            <div class="col-md-6 col-md-offset-1">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    @endif
-
-    <div id="pageMiddle" class="container">
+    <style>
+        #pageMiddle
+        {
+            margin:auto 0;
+            margin-left:300px;
+            margin-top:50px;
+            width:50%;
+        }
+        #createAccountForm
+        {
+            margin-top:24px;
+        }
+        #createAccountForm > div
+        {
+            margin-top:12px;
+        }
+        #createAccountForm > input
+        {
+            width:300px;
+            padding:3px;
+            background:#F3F9DD;
+        }
+        #createAccountBtn
+        {
+            font-size:16px;
+            padding:2px;
+            height:26px;
+        }
+        #btnMenuLogin
+        {
+            margin:auto auto auto 90%;
+        }
+    </style>
+        <div id="pageMiddle" class="container">
         <h3>Create Account</h3>
         <form name="createAccountForm" id="createAccountForm" method="post"  action="/AddStudent">
             <div class="form-group {{$errors->has('name')? 'has-error':''}}" >

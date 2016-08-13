@@ -8,7 +8,22 @@
         $new=false;
     }
 ?>
-
+<script>
+    public:function btnBackClicked() {
+        window.location.href="/Results/Semester1";
+    }
+</script>
+<style>
+    #subjectDetails
+    {
+        width:50%;
+        margin:20px auto;
+        padding:20px;
+    }
+    button{width:80px;}
+    select{width:120px; }
+    #btnBack{ width:140px;}
+</style>
 <div>SubjectName:</div>
 <input class="form-control" type="text" id="subjectname" name="subjectname"
        onblur="checkSubjectName('@if(!$new){{$subject->subjectname}}@else {!! "" !!}@endif')" value="@if(!$new){{$subject->subjectname}}@endif"
@@ -37,8 +52,6 @@
 
 <button type="submit" class="btn btn-success" id="btnAddSubject" > OK</button>
 
-<button class="btn btn-primary" id="btnBack" onclick="btnBackClicked()">Back To Results</button>
-</br>
-</br>
-<span id="status"></span>
+<button class="btn btn-primary" id="btnBack" onclick="btnBackClicked()" type="button">Back To Results</button>
+
 <input type="hidden" name="_token" value="{{Session::token()}}">

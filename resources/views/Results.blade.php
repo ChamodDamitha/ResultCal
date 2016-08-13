@@ -1,6 +1,18 @@
 @extends('Master')
 
 @section('main_content')
+    <style>
+        #studentDetails
+        {
+            width:50%;
+            text-align:center;
+            margin:20px auto 0 auto;
+            padding:0px;
+        }
+        table{margin:0 auto;}
+        td,th{text-align:left;}
+        label {   font-size:18px;  }
+    </style>
     <script>
         public:function semesterSelect() {
             var currentSemNo=document.getElementById("selected_semester").value;

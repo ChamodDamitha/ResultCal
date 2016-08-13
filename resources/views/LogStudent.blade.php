@@ -1,13 +1,16 @@
 @extends('Master')
 
 @section('main_content')
-    @if(count($errors)>0)
+    @if(count($errors)>0 || Session::has('login_error'))
         <div class="container alert alert-danger" id="status">
-            <div class="col-md-6 col-md-offset-1">
+            <div class="col-md-6">
                 <ul>
                     @foreach($errors->all() as $error)
                         <li>{{$error}}</li>
                     @endforeach
+                    @if(Session::has('login_error'))
+                            <li>{{session('login_error')}}</li>
+                        @endif
                 </ul>
             </div>
         </div>
