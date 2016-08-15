@@ -1,7 +1,7 @@
 @extends('Master')
 
 @section('main_content')
-       <div id="subjectDetails" class="container bg-success">
+       <div id="subjectDetails" class="wrapperTrans">
         <h4>Edit Subject</h4>
 
         <label>Semester</label></br></br>

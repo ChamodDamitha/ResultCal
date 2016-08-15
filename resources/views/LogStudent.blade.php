@@ -1,31 +1,20 @@
 @extends('Master')
 
 @section('main_content')
-    @if(count($errors)>0 || Session::has('login_error'))
-        <div class="container alert alert-danger" id="status">
-            <div class="col-md-6">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                    @if(Session::has('login_error'))
-                            <li>{{session('login_error')}}</li>
-                        @endif
-                </ul>
-            </div>
-        </div>
-    @endif
-    <div style="text-align:center;margin-top:100px;">
-        <form id="loginForm" name="loginForm" action="/LogStudent" method="post">
+    <div style="margin-left: 400px ">
+        <h1>Want To See Your Results...!</h1>
+    </div>
+    <div style="width: 20%; text-align: center" class="container wrapperTrans">
+        <form id="loginForm" name="loginForm" action="/LogStudent" method="post" style="margin-top: 40px">
             <div class="form-group">
-                <input type="text" name="indexno" placeholder="Index No" onfocus="clearStatus()" style="text-align: center" value="{{Request::old('indexno')}}">
+                <input class="form-control" type="text" name="indexno" placeholder="Index No" style="text-align: center" value="{{Request::old('indexno')}}">
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Password" onfocus="clearStatus()" style="text-align: center"  value="{{Request::old('password')}}">
+                <input class="form-control" type="password" name="password" placeholder="Password"  style="text-align: center"  value="{{Request::old('password')}}">
             </div>
             </br>
             <div>
-                <button class="btn btn-primary" id="btnLogin" >Log In</button></br></br>
+                <button class="btn btn-primary form-control" id="btnLogin" >Log In</button></br></br>
             </div>
             <div>
                 <a href="/AddStudent">Create New Account</a>

@@ -34,7 +34,7 @@
             margin:auto auto auto 90%;
         }
     </style>
-        <div id="pageMiddle" class="container">
+        <div id="pageMiddle" class="container wrapperTrans">
         <h3>Create Account</h3>
         <form name="createAccountForm" id="createAccountForm" method="post"  action="/AddStudent">
             <div class="form-group {{$errors->has('name')? 'has-error':''}}" >

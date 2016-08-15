@@ -32,7 +32,7 @@
         }
     </script>
 
-    <div id="studentDetails" class="container">
+    <div id="studentDetails" class="container wrapperTrans">
 
         <label id="studentName">{{$studentName}}</label></br>
         <label id="indexNo">{{$studentIndexNo}}</label></br>

@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['middleware'=>['auth']],function()
+Route::group(['middleware'=>['auth','validateBackHistory']],function()
 {
     Route::get('Results/{semester}', ['uses'=>'SemesterController@showResults','as'=>'results']);
 
