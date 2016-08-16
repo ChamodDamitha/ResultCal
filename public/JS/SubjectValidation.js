@@ -58,7 +58,7 @@ function clearForm()
 
 function btnBackClicked()
 {
-    window.location.href="Results";
+    window.location.href="/Results/Semester1";
 }
 
 function checkSubjectName(currentName)

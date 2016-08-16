@@ -38,5 +38,7 @@ Route::get('LogStudent',['uses'=>'StudentController@logStudent','as'=>'home']);
 
 Route::post('LogStudent','StudentController@postlogStudent');
 
+Route::get('Error',['uses'=>function(){return view('Error');}, 'as'=>'error']);
+
 
 

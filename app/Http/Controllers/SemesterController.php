@@ -15,44 +15,49 @@ class SemesterController extends Controller
 {
     public function showResults($sem)
     {
-        $sem_no=str_split($sem,8)[1];        //semester1 > semester 1
-        if(1<=$sem_no && $sem_no<=8) {
-            $student = \Auth::user();
+        if(strlen($sem)>8) {
+            $sem_no = str_split($sem, 8)[1];        //semester1 > semester 1
+            if (1 <= $sem_no && $sem_no <= 8) {
+                $student = \Auth::user();
 
-            $semester = $student->semester($sem_no);
-            $subjects = $semester->subjects;
-            $subjectNames = array();
-            $moduleCodes = array();
-            $credits = array();
-            $grades = array();
-            $currentSemNo = $semester->no;
-            $semesterGPA = Calculater::calSemesterGPA($semester);
-            $studentGPA = Calculater::calStudentGPA($student);
-            $studentName = $student->name;
-            $studentIndexNo = $student->indexno;
-            foreach ($subjects as $subject) {
-                $subjectNames[] = $subject->subjectname;
-                $moduleCodes[] = $subject->modulecode;
-                $credits[] = $subject->credit;
-                $grades[] = $subject->grade;
+                $semester = $student->semester($sem_no);
+                $subjects = $semester->subjects;
+                $subjectNames = array();
+                $moduleCodes = array();
+                $credits = array();
+                $grades = array();
+                $currentSemNo = $semester->no;
+                $semesterGPA = Calculater::calSemesterGPA($semester);
+                $studentGPA = Calculater::calStudentGPA($student);
+                $studentName = $student->name;
+                $studentIndexNo = $student->indexno;
+                foreach ($subjects as $subject) {
+                    $subjectNames[] = $subject->subjectname;
+                    $moduleCodes[] = $subject->modulecode;
+                    $credits[] = $subject->credit;
+                    $grades[] = $subject->grade;
+                }
+
+                return view('Results', compact('studentName', 'studentIndexNo', 'subjectNames', 'moduleCodes', 'credits', 'grades',
+                    'currentSemNo', 'semesterGPA', 'studentGPA'));
             }
-
-            return view('Results', compact('studentName', 'studentIndexNo', 'subjectNames', 'moduleCodes', 'credits', 'grades',
-                'currentSemNo', 'semesterGPA', 'studentGPA'));
         }
-        return abort(404,'Page Not Found');
+        return redirect()->route('error');
     }
 
     public function editSubject($sem,$subjectname)
     {
-        $sem_no=str_split($sem,8)[1];        //semester1 > semester 1
-        if(1<=$sem_no && $sem_no<=8) {
-            $student=\Auth::user();
-            $semester=$student->semester($sem_no);
-            $subject = $semester->subject($subjectname,$semester->id);
-            return view('EditSubject', compact('subject','sem_no'));
+        if(strlen($sem)>8) {
+            $sem_no = str_split($sem, 8)[1];        //semester1 > semester 1
+            if (1 <= $sem_no && $sem_no <= 8) {
+                $student = \Auth::user();
+                $semester = $student->semester($sem_no);
+                $subject = $semester->subject($subjectname, $semester->id);
+                if ($subject == null) return redirect("Results/Semester1");
+                return view('EditSubject', compact('subject', 'sem_no'));
+            }
+            return redirect("Results/Semester1");
         }
-        return abort(404,'Page Not Found');
     }
 
     public function postEditSubject($sem,$subjectname,Request $request)
@@ -67,15 +72,17 @@ class SemesterController extends Controller
             $subject->update($input);
             return redirect('/Results/'.$sem);
         }
-        return abort(404,'Page Not Found');
+        return redirect()->route('error');
     }
 
     public function addSubject($sem)
     {
-        $sem_no=str_split($sem,8)[1];        //semester1 > semester 1
-        if(1<=$sem_no && $sem_no<=8)
-            return view('AddSubject',compact('sem_no'));
-        return abort(404,'Page Not Found');
+        if(strlen($sem)>8) {
+            $sem_no = str_split($sem, 8)[1];        //semester1 > semester 1
+            if (1 <= $sem_no && $sem_no <= 8)
+                return view('AddSubject', compact('sem_no'));
+        }
+        return redirect()->route('error');
     }
 
     public function postAddSubject($sem,Request $request)
@@ -94,7 +101,7 @@ class SemesterController extends Controller
             session()->flash('flash_message','New Subject was added successfully...!');
             return redirect('/Results/'.$sem);
         }
-        return abort(404,'Page Not Found');
+        return redirect()->route('error');
     }
 
     public function deleteSubject($sem,$subjectname)
@@ -108,6 +115,6 @@ class SemesterController extends Controller
             session()->flash('flash_message','Subject was deleted successfully...!');
             return redirect("/Results/".$sem);
         }
-        return abort(404,'Page Not Found');
+        return redirect()->route('error');
     }
 }

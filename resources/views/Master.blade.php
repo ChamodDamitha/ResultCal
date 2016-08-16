@@ -2,7 +2,6 @@
 <html>
     <head>
         <link rel="stylesheet" href="{!! asset('CSS/bootstrap.min.css') !!}" type="text/css">
-        <script src="{{asset('JS/jquery-3.1.0.js')}}"></script>
         <script src="{{asset('JS/bootstrap.min.js')}}"></script>
         <style>
             .wrapperTrans
