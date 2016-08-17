@@ -1,6 +1,21 @@
 @extends('Master')
 
 @section('main_content')
+    <script>
+        public:function continueLogin() {
+            window.location.href="/Results/Semester1";
+        }
+
+    </script>
+    <style>
+        #continueLogin
+        {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 20px;
+            color: #2e3436;
+        }
+    </style>
     <div style="margin-left: 400px ">
         <h1>Want To See Your Results...!</h1>
     </div>
@@ -24,5 +39,15 @@
             <input type="hidden" name="_token" value="{{Session::token()}}">
 
         </form>
+    </div>
+    @if(\Auth::user()!=null)
+        <div id="continueLogin">
+            <label>You are logged in as </label>
+            <label style="color: #122b40">{{\Auth::user()->name}}</label>
+            <button class="btn btn-success" type="button" onclick="continueLogin()">Continue</button>
+        </div>
+    @endif
+    <div>
+
     </div>
 @stop

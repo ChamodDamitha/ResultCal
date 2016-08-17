@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="{!! asset('CSS/bootstrap.min.css') !!}" type="text/css">
         <script src="{{asset('JS/bootstrap.min.js')}}"></script>
+        <script src="{{asset('JS/jquery-3.1.0.js')}}"></script>
         <style>
             .wrapperTrans
             {
@@ -34,7 +35,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="/LogStudent">Log In</a></li>
+                            <li><a href="{{route('home')}}">Log In</a></li>
                             <li><a href="/AddStudent">Sign Up</a></li>
                             <li><a href="/LogOutStudent">Log Out</a></li>
                         </ul>

@@ -34,7 +34,7 @@ Route::get('AddStudent','StudentController@addStudent');
 
 Route::post('AddStudent','StudentController@postAddStudent');
 
-Route::get('LogStudent',['uses'=>'StudentController@logStudent','as'=>'home']);
+Route::get('home',['uses'=>'StudentController@logStudent','as'=>'home']);
 
 Route::post('LogStudent','StudentController@postlogStudent');
 
